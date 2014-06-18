@@ -4,7 +4,8 @@ class ChatController < ApplicationController
 
   def new_message
     Pusher['chatroom'].trigger('new_chat', {
-      message: params[:message]
+      message: params[:message],
+      user: "steve"
     })
   end
 end

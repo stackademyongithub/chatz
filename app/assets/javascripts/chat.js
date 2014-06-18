@@ -11,6 +11,15 @@ var channel = pusher.subscribe('chatroom');
 
 channel.bind('new_chat', function(data) {
   $(".messages").append("<p>" + data.message + "</p>");
-  console.log(data.message);
+  console.log(data);
 });
 
+function sendmessage(message) {
+  $.get("http://localhost:3000/chat/new_message?message="+message);
+}
+
+$(document).ready(function(){
+  $("#activate").click(function(){
+    sendmessage($("#chatmessage")[0].value);
+  })
+});
